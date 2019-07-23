@@ -42,7 +42,6 @@
         <p><input type="submit" value="Dodaj"></p>
         </div>
 
-
     </form:form>
 
     </section>

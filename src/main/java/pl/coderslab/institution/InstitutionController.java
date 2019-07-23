@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Table;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -32,14 +31,14 @@ public class InstitutionController {
             return "institution";
         }
         institutionService.saveInstitution(institution);
-        return "redirect:list";
+        return "index";
     }
 
     @GetMapping(value = "/list", produces = "text/html; charset=UTF-8")
     public String institutionsList(Model model){
         List<Institution> institutions = institutionService.findAllInstitutions();
         model.addAttribute("institutions", institutions);
-        return "institutionsList";
+        return "index";
     }
 
     @GetMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
