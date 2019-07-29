@@ -46,6 +46,8 @@ public class Donation {
 
     private String pickUpComment;
 
+    private String phoneNumber;
+
     public Donation() {
     }
 
@@ -136,6 +138,15 @@ public class Donation {
 
     public Donation setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
+        return this;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Donation setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
         return this;
     }
 }
