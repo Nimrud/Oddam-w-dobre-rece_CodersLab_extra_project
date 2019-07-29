@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.category.Category;
 import pl.coderslab.category.CategoryService;
+import pl.coderslab.institution.Institution;
+import pl.coderslab.institution.InstitutionService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,11 +19,13 @@ public class DonationController {
 
     private DonationService donationService;
     private CategoryService categoryService;
+    private InstitutionService institutionService;
 
     @Autowired
-    public DonationController(DonationService donationService, CategoryService categoryService) {
+    public DonationController(DonationService donationService, CategoryService categoryService, InstitutionService institutionService) {
         this.donationService = donationService;
         this.categoryService = categoryService;
+        this.institutionService = institutionService;
     }
 
     @GetMapping(value = "/add", produces = "text/html; charset=UTF-8")
@@ -49,6 +53,11 @@ public class DonationController {
     @ModelAttribute("categories")
     public List<Category> getCategories(){
         return categoryService.findAllCategories();
+    }
+
+    @ModelAttribute("institutions")
+    public List<Institution> getInstitutions(){
+        return institutionService.findAllInstitutions();
     }
 
     @GetMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
