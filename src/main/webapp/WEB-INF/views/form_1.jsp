@@ -52,17 +52,12 @@
 
                     <c:forEach var="cat" items="${categories}">
                         <label>
-                            <input
-                                    type="checkbox"
-                                    name="categories"
-                                    value="clothes-to-use"
-                            />
+                            <input type="checkbox" name="categories"
+                                   value="${cat}"/>
                             <span class="checkbox"></span>
-                            <span class="description"
-                            >${cat.name}</span
-                            >
+                            <span class="description">${cat.name}</span>
                         </label>
-
+                        <br>
                     </c:forEach>
                 </div>
 
@@ -94,31 +89,17 @@
                 <h3>Wybierz organizację, której chcesz pomóc:</h3>
 
                 <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="radio" name="organization" value="old"/>
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-
 
                     <c:forEach var="instit" items="${institutions}">
                         <label>
-                            <input type="radio" name="organization" value="old"/>
+                            <input type="radio" name="organization" value="${instit}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                             <div class="title"> ${instit.name} </div>
                             <div class="subtitle">${instit.description}</div>
-                        </span>
+                            </span>
                         </label>
+                        <br>
                     </c:forEach>
 
 
