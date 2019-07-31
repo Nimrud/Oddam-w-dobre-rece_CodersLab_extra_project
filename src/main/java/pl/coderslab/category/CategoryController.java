@@ -23,13 +23,13 @@ public class CategoryController {
     @GetMapping(value = "/add", produces = "text/html; charset=UTF-8")
     public String addCategory(Model model){
         model.addAttribute("category", new Category());
-        return "category";
+        return "form_category";
     }
 
     @PostMapping(value = "/add", produces = "text/html; charset=UTF-8")
     public String addCategory(@ModelAttribute @Valid Category category, BindingResult result){
         if(result.hasErrors()){
-            return "category";
+            return "form_category";
         }
         categoryService.saveCategory(category);
         return "redirect:list";
