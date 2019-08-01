@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+
+
+
+
   /**
    * Form Select
    */
@@ -172,3 +176,47 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 });
+
+document.getElementById("address_next_btn").addEventListener("click", function(){
+  var street = $('#street_val').val();
+  $('#sum_street').html(street);
+
+  var city = $('#city_val').val();
+  $('#sum_city').html(city);
+
+  var zipCode = $('#zip_val').val();
+  $('#sum_zip').html(zipCode);
+
+  var phone = $('#phone_val').val();
+  $('#sum_phone').html(phone);
+
+  var pickUpDate = $('#date_val').val();
+  $('#sum_date').html(pickUpDate);
+
+  var pickUpTime = $('#time_val').val();
+  $('#sum_time').html(pickUpTime);
+
+  var comments = $('#comment_val').val();
+  $('#sum_comment').html(comments);
+});
+
+document.getElementById("instit_next_btn").addEventListener("click", function() {
+  var institution = $('#instit_val').val();
+  $('#sum_instit').html('Obdarowana organizacja to '+institution);
+});
+
+document.getElementById("bags_next_btn").addEventListener("click", function() {
+  var bags = $('#bagsId').val();
+  if(bags==1){
+    $('#sum_bags').html(bags+' worek');
+  }
+  else {
+    $('#sum_bags').html(bags+' worki/ów');
+  }
+});
+
+document.getElementById("categories_next_btn").addEventListener("click", function() {
+  var categories = $('#categ_val').val();
+  $('#sum_categories').html(categories);
+});
+

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -52,8 +53,7 @@
 
                     <c:forEach var="cat" items="${categories}">
                         <label>
-                            <input type="checkbox" name="categories"
-                                   value="${cat}"/>
+                            <input type="checkbox" name="categories" value="${cat}" id="categ_val"/>
                             <span class="checkbox"></span>
                             <span class="description">${cat.name}</span>
                         </label>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="categories_next_btn">Dalej</button>
                 </div>
 
             </div>
@@ -72,14 +72,14 @@
                 <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
 
                 <div class="form-group form-group--inline">
-                    <form:label path="quantity" for="bagsId">Liczba 60l worków: </form:label>
+                    <form:label path="quantity" for="bagsId" >Liczba 60l worków: </form:label>
                     <form:input path="quantity" step="1" min="1" id="bagsId"/>
                     <form:errors path="quantity" element="div"/>
                 </div>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="bags_next_btn">Dalej</button>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
 
                     <c:forEach var="instit" items="${institutions}">
                         <label>
-                            <input type="radio" name="organization" value="${instit}"/>
+                            <input type="radio" name="organization" value="${instit}" id="instit_val"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                             <div class="title"> ${instit.name} </div>
@@ -107,7 +107,7 @@
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="instit_next_btn">Dalej</button>
                 </div>
             </div>
 
@@ -119,22 +119,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input path="street"/> </label>
+                            <label> Ulica <form:input path="street" id="street_val"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input path="city"/> </label>
+                            <label> Miasto <form:input path="city" id="city_val"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode"/>
+                                Kod pocztowy <form:input path="zipCode" id="zip_val"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="phoneNumber"/>
+                                Numer telefonu <form:input path="phoneNumber" id="phone_val"/>
                             </label>
                         </div>
                     </div>
@@ -142,24 +142,24 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input type="date" path="pickUpDate"/> </label>
+                            <label> Data <form:input type="date" path="pickUpDate" id="date_val"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input type="time" path="pickUpTime"/> </label>
+                            <label> Godzina <form:input type="time" path="pickUpTime" id="time_val"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment"/>
+                                <form:textarea path="pickUpComment" id="comment_val"/>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step" id="address_next_btn">Dalej</button>
                 </div>
             </div>
 
@@ -174,14 +174,14 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
+                                ><span id="sum_bags"> </span>, w których znajdują się <span id="sum_categories"> </span> dla dzieci</span
                                 >
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
+                                <span class="summary--text" id="sum_instit"
+                                > </span
                                 >
                             </li>
                         </ul>
@@ -191,19 +191,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="sum_street"> </li>
+                                <li id="sum_city"> </li>
+                                <li id="sum_zip"> </li>
+                                <li id="sum_phone"> </li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="sum_date"> </li>
+                                <li id="sum_time"> </li>
+                                <li id="sum_comment"> </li>
                             </ul>
                         </div>
                     </div>
@@ -221,6 +221,8 @@
 <footer>
     <%@include file="/WEB-INF/fragments/footer.jspf" %>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
