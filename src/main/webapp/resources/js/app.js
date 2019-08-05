@@ -200,9 +200,17 @@ document.getElementById("address_next_btn").addEventListener("click", function()
   $('#sum_comment').html(comments);
 });
 
-document.getElementById("instit_next_btn").addEventListener("click", function() {
-  var institution = $('#instit_val').val();
-  $('#sum_instit').html('Obdarowana organizacja to '+institution);
+document.getElementById("categories_next_btn").addEventListener("click", function() {
+    var categories = [];
+
+        $('.categ_val:checked').each(function () {
+            categories.push($(this).val().concat(', '));
+        });
+    console.log(categories);
+    $('#sum_categories').html(categories);
+    /*
+      $('#sum_categories').html(categories.join(", "));
+    */
 });
 
 document.getElementById("bags_next_btn").addEventListener("click", function() {
@@ -210,13 +218,45 @@ document.getElementById("bags_next_btn").addEventListener("click", function() {
   if(bags==1){
     $('#sum_bags').html(bags+' worek');
   }
+  else if((bags==2) || (bags==3) || (bags==4)){
+      $('#sum_bags').html(bags+' worki');
+  }
   else {
-    $('#sum_bags').html(bags+' worki/ów');
+    $('#sum_bags').html(bags+' worków');
   }
 });
 
-document.getElementById("categories_next_btn").addEventListener("click", function() {
-  var categories = $('#categ_val').val();
-  $('#sum_categories').html(categories);
+document.getElementById("instit_next_btn").addEventListener("click", function() {
+    var institution = $('.instit_val:checked').val();
+    $('#sum_instit').html('Obdarowana organizacja to '+institution);
 });
 
+
+
+// ograniczenie możliwości wpisywania znaków do pola "liczba worków" - do liczb mniejszych od 20
+function setInputFilter(textbox, inputFilter) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+        textbox.addEventListener(event, function() {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            }
+        });
+    });
+}
+
+setInputFilter(document.getElementById("bagsId"), function (value) {
+    return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 20);
+})
+
+setInputFilter(document.getElementById("city_val"), function (value) {
+    return /^[a-z\-\u00c0-\u024f]*$/i.test(value);
+})
+
+setInputFilter(document.getElementById("zip_val"), function (value) {
+    return /^[(0-9)-]*$/.test(value);
+})
