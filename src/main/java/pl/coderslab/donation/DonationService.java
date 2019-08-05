@@ -32,4 +32,11 @@ public class DonationService {
     public List<Donation> findAllDonations(){
         return donationRepo.findAll();
     }
+
+    public int sumOfAllBags(){
+        return donationRepo.sumOfAllBags();
+    }
+
+    public int sumOfAllSupportedInstitutions(){ return donationRepo.sumOfAllSupportedInstitutions();}
+
 }
