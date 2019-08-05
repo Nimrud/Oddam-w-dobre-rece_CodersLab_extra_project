@@ -51,11 +51,11 @@
 
                 <div class="form-group form-group--checkbox">
 
-                    <c:forEach var="cat" items="${categories}">
+                    <c:forEach var="category" items="${categories}">
                         <label>
-                            <input type="checkbox" name="categories" value="${cat}" id="categ_val"/>
+                            <input type="checkbox" name="categories" value="${category.name}" class="categ_val"/>
                             <span class="checkbox"></span>
-                            <span class="description">${cat.name}</span>
+                            <span class="description">${category.name}</span>
                         </label>
                         <br>
                     </c:forEach>
@@ -73,7 +73,7 @@
 
                 <div class="form-group form-group--inline">
                     <form:label path="quantity" for="bagsId" >Liczba 60l worków: </form:label>
-                    <form:input path="quantity" step="1" min="1" id="bagsId"/>
+                    <form:input path="quantity" id="bagsId"/> <span> &nbsp;(max 20)</span>
                     <form:errors path="quantity" element="div"/>
                 </div>
 
@@ -90,13 +90,13 @@
 
                 <div class="form-group form-group--checkbox">
 
-                    <c:forEach var="instit" items="${institutions}">
+                    <c:forEach var="institution" items="${institutions}">
                         <label>
-                            <input type="radio" name="organization" value="${instit}" id="instit_val"/>
+                            <input type="radio" name="institution" value="${institution.name}" class="instit_val"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                            <div class="title"> ${instit.name} </div>
-                            <div class="subtitle">${instit.description}</div>
+                            <div class="title"> ${institution.name} </div>
+                            <div class="subtitle">${institution.description}</div>
                             </span>
                         </label>
                         <br>
@@ -128,8 +128,7 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode" id="zip_val"/>
-                            </label>
+                                Kod pocztowy <form:input path="zipCode" id="zip_val"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -174,14 +173,12 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                ><span id="sum_bags"> </span>, w których znajdują się <span id="sum_categories"> </span> dla dzieci</span
-                                >
+                                ><span id="sum_bags"> </span>, w których znajdują się <span id="sum_categories"> </span> dla dzieci</span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text" id="sum_instit"
-                                > </span
+                                <span class="summary--text" id="sum_instit"> </span
                                 >
                             </li>
                         </ul>
@@ -192,8 +189,8 @@
                             <h4>Adres odbioru:</h4>
                             <ul>
                                 <li id="sum_street"> </li>
-                                <li id="sum_city"> </li>
                                 <li id="sum_zip"> </li>
+                                <li id="sum_city"> </li>
                                 <li id="sum_phone"> </li>
                             </ul>
                         </div>
