@@ -53,7 +53,7 @@
 
                     <c:forEach var="category" items="${categories}">
                         <label>
-                            <input type="checkbox" name="categories" value="${category.name}" class="categ_val"/>
+                            <input type="checkbox" name="categories" value="${category.id}" class="categ_val"/>
                             <span class="checkbox"></span>
                             <span class="description">${category.name}</span>
                         </label>
@@ -92,7 +92,7 @@
 
                     <c:forEach var="institution" items="${institutions}">
                         <label>
-                            <input type="radio" name="institution" value="${institution.name}" class="instit_val"/>
+                            <input type="radio" name="institution" value="${institution.id}" class="instit_val"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                             <div class="title"> ${institution.name} </div>
