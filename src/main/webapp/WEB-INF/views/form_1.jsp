@@ -53,6 +53,7 @@
 
                     <c:forEach var="category" items="${categories}">
                         <label>
+                            <input type="hidden" class="categNames" value="${category.name}" />
                             <input type="checkbox" name="categories" value="${category.id}" class="categ_val"/>
                             <span class="checkbox"></span>
                             <span class="description">${category.name}</span>
@@ -92,6 +93,7 @@
 
                     <c:forEach var="institution" items="${institutions}">
                         <label>
+                            <input type="hidden" class="institNames" value="${institution.name}" />
                             <input type="radio" name="institution" value="${institution.id}" class="instit_val"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
@@ -151,7 +153,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" id="comment_val"/>
+                                <form:textarea path="pickUpComment" id="comment_val" placeholder="brak uwag"/>
                             </label>
                         </div>
                     </div>
@@ -173,7 +175,7 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                ><span id="sum_bags"> </span>, w których znajdują się <span id="sum_categories"> </span> dla dzieci</span>
+                                ><span id="sum_bags"> </span>, w których znajdują się <span id="sum_categories"> </span> dla potrzebujących</span>
                             </li>
 
                             <li>

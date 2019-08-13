@@ -202,15 +202,41 @@ document.getElementById("address_next_btn").addEventListener("click", function()
 
 document.getElementById("categories_next_btn").addEventListener("click", function() {
     var categories = [];
-
-        $('.categ_val:checked').each(function () {
-            categories.push($(this).val().concat(', '));
+    $('.categ_val:checked').each(function () {
+            categories.push($(this).val());
         });
-    console.log(categories);
-    $('#sum_categories').html(categories);
-    /*
-      $('#sum_categories').html(categories.join(", "));
-    */
+    //console.log(categories);
+
+    var categNames = [];
+    $('.categNames').each(function () {
+      categNames.push($(this).val());
+    })
+    //console.log(categNames);
+
+    var categChosen = [];
+    for(i=0; i<categories.length; i++){
+      categChosen[i] = categNames[categories[i]-1];
+    }
+    //console.log(categChosen);
+
+    $('#sum_categories').html(categChosen.join(', '));
+});
+
+
+document.getElementById("instit_next_btn").addEventListener("click", function() {
+    var institution = $('.instit_val:checked').val();
+    var institNames = [];
+    $('.institNames').each(function () {
+          institNames.push($(this).val());
+        })
+    //console.log(institNames);
+    //console.log(institution);
+
+    var institChosen;
+    institChosen = institNames[institution-1];
+    //console.log(institChosen);
+
+    $('#sum_instit').html('Obdarowana organizacja: '+institChosen);
 });
 
 document.getElementById("bags_next_btn").addEventListener("click", function() {
@@ -219,18 +245,12 @@ document.getElementById("bags_next_btn").addEventListener("click", function() {
     $('#sum_bags').html(bags+' worek');
   }
   else if((bags==2) || (bags==3) || (bags==4)){
-      $('#sum_bags').html(bags+' worki');
+    $('#sum_bags').html(bags+' worki');
   }
   else {
     $('#sum_bags').html(bags+' worków');
   }
 });
-
-document.getElementById("instit_next_btn").addEventListener("click", function() {
-    var institution = $('.instit_val:checked').val();
-    $('#sum_instit').html('Obdarowana organizacja to '+institution);
-});
-
 
 
 // ograniczenie możliwości wpisywania znaków do pola "liczba worków" - do liczb mniejszych od 20
