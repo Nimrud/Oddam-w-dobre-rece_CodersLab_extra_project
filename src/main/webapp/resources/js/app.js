@@ -177,6 +177,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+// przechwytywanie danych wpisanych do formularza
+// (event ustawiony na kliknięcie przycisku "dalej")
+
 document.getElementById("address_next_btn").addEventListener("click", function(){
   var street = $('#street_val').val();
   $('#sum_street').html(street);
@@ -201,18 +204,22 @@ document.getElementById("address_next_btn").addEventListener("click", function()
 });
 
 document.getElementById("categories_next_btn").addEventListener("click", function() {
+
+    //pobranie numerów wszystkich zaznaczonych w formularzu kategorii
     var categories = [];
     $('.categ_val:checked').each(function () {
             categories.push($(this).val());
         });
     //console.log(categories);
 
+    //pobranie nazw wszystkich kategorii znajd. się w bazie
     var categNames = [];
     $('.categNames').each(function () {
       categNames.push($(this).val());
     })
     //console.log(categNames);
 
+    //przypisanie numerów zaznaczonych kategorii do ich nazw
     var categChosen = [];
     for(i=0; i<categories.length; i++){
       categChosen[i] = categNames[categories[i]-1];
@@ -224,20 +231,24 @@ document.getElementById("categories_next_btn").addEventListener("click", functio
 
 
 document.getElementById("instit_next_btn").addEventListener("click", function() {
+
+    //pobranie numeru zaznaczonej w formularzu instytucji
     var institution = $('.instit_val:checked').val();
+
+    //pobranie nazw wszystkich instytucji znajd. się w bazie
     var institNames = [];
     $('.institNames').each(function () {
           institNames.push($(this).val());
         })
-    //console.log(institNames);
-    //console.log(institution);
 
+    //przypisanie zaznaczonego numeru do konkretnej nazwy
     var institChosen;
     institChosen = institNames[institution-1];
-    //console.log(institChosen);
 
+    //przekazanie wyniku do podsumowania formularza
     $('#sum_instit').html('Obdarowana organizacja: '+institChosen);
 });
+
 
 document.getElementById("bags_next_btn").addEventListener("click", function() {
   var bags = $('#bagsId').val();
@@ -253,7 +264,8 @@ document.getElementById("bags_next_btn").addEventListener("click", function() {
 });
 
 
-// ograniczenie możliwości wpisywania znaków do pola "liczba worków" - do liczb mniejszych od 20
+// walidacja pól formularza - ogólna funkcja (implementacje dla poszczeg. pól
+// poniżej); działa dla wpisywania "z palca" i wklejania zawartości
 function setInputFilter(textbox, inputFilter) {
     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
         textbox.addEventListener(event, function() {
@@ -269,10 +281,12 @@ function setInputFilter(textbox, inputFilter) {
     });
 }
 
+// ograniczenie możliwości wpisywania znaków do pola "liczba worków" - do liczb mniejszych od 20
 setInputFilter(document.getElementById("bagsId"), function (value) {
     return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 20);
 })
 
+// walidacja nazwy miasta (litery + z polskie znaki)
 setInputFilter(document.getElementById("city_val"), function (value) {
     return /^[a-z\-\u00c0-\u024f]*$/i.test(value);
 })
