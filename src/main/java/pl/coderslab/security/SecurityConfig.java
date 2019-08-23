@@ -13,9 +13,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("newUser").password("{noop}user222").roles("USER")
+                .withUser("newUser@wp.pl").password("{noop}user222").roles("USER")
                 .and()
-                .withUser("mainAdmin").password("{noop}admin333").roles("ADMIN");
+                .withUser("mainAdmin@wp.pl").password("{noop}admin333").roles("ADMIN");
     }
 
     @Override
