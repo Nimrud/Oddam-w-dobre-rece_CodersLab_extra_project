@@ -60,6 +60,8 @@ public class DonationController {
         return institutionService.findAllInstitutions();
     }
 
+
+    // TODO
     @GetMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
     public String updateDonation(@PathVariable Long id, Model model){
         Donation donation = donationService.findDonation(id);
@@ -67,6 +69,7 @@ public class DonationController {
         return "donation";
     }
 
+    // TODO
     @PostMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
     public String updateDonation(@ModelAttribute @Valid Donation donation, BindingResult result){
         if(result.hasErrors()){

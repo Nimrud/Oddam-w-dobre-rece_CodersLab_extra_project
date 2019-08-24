@@ -41,6 +41,7 @@ public class InstitutionController {
         return "index";
     }
 
+    // TODO
     @GetMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
     public String updateInstitution(@PathVariable Long id, Model model){
         Institution institution = institutionService.findInstitution(id);
@@ -48,6 +49,7 @@ public class InstitutionController {
         return "institution";
     }
 
+    // TODO
     @PostMapping(value = "/update/{id}", produces = "text/html; charset=UTF-8")
     public String updateInstitution(@ModelAttribute @Valid Institution institution, BindingResult result){
         if(result.hasErrors()){
