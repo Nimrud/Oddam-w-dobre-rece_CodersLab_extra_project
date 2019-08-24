@@ -15,8 +15,8 @@
 </head>
 
 <body>
-<header class="header--form-page">
-    <%@include file="/WEB-INF/fragments/header_2.jspf" %>
+<header>
+    <%@include file="/WEB-INF/fragments/header_clean.jspf" %>
 </header>
 
 <section class="login-page">
