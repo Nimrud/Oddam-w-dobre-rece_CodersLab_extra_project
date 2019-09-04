@@ -3,6 +3,7 @@ package pl.coderslab.users;
 import javax.persistence.*;
 import java.util.Set;
 
+@Entity
 public class User {
 
     @Id
