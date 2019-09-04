@@ -1,5 +1,6 @@
 package pl.coderslab.users;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
+    @Autowired
     public void setUserRepo(UserService userService) {
         this.userService = userService;
     }
